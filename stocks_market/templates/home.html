@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{% block content %}
+<h3>
+<marquee>
+
+{% if ticker %}
+        {{ ticker }}
+{% endif %}
+
+</marquee>
+</h3>
+<h1>Welcome, </h1>
+
+<b>Wanna invest in your favourite company look no further. </b>
+</br>
+</br>
+<b>Create a personalized watchlist and track your favorite companies by frequently visiting the site and tracking the market cap of the company you are interested in. </b>
+</br>
+</br>
+<b>At Stock Kings, we provide real-time information to help you make informed investment decisions. We offer a comprehensive overview of NASDAQ-listed companies, allowing you to stay up-to-date with the latest market trends and make smart investment choices.</b>
+</br>
+</br>
+<b> Search the company above using the company's ticker symbol and get the details you need to plan your investment. </b>
+
+
+{% if api %}
+
+    {% if api == "Error 404 ...." %}
+        There was a problem with your ticker symbol, please try again...
+
+    {% else %}
+        <h1>{{ api.companyName}}.</h1></br>
+        Price: ${{ api.latestPrice}}</br>
+        Previous close: {{ api.previousClose}}</br>
+        Market cap: {{ api.marketCap}}</br>
+        Year to date change: {{ api.ytdChange}}</br>
+        Current volume: {{ api.latestVolume}}</br>
+        Weekly high: {{ api.week52High}}</br>
+        Weekly low: {{api.week52Low}}
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}
